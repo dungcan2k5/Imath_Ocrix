@@ -19,6 +19,7 @@ def detect_document():
     response = client.document_text_detection(image=image)
 
     full_page = response.full_text_annotation.text
+    
     return full_page
             
 # Detects text in an image <same the top>.
