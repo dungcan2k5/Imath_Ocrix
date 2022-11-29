@@ -1,0 +1,8 @@
+WINDOW_HEIGHT               = 500
+WINDOW_WIDTH                = 889
+WINDOW_POSITTION_RIGHT      = 100
+WINDOW_POSITTION_DOWN       = 100
+WINDOW_TITLE                = "OCR Project - D2Team - KHKT 2023"
+
+COLOR_BACKGROUND = "#A8F6CE"
+
