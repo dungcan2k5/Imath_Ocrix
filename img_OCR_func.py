@@ -3,7 +3,7 @@ from google.cloud import vision
 
 from snip_screen import *
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"C:\Users\Dungx\Desktop\Code\OCR_PRJ\Key.json"
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"C:\Users\Dungx\Desktop\OCR_PRJ\Key.json"
 
 # Detects document in an image.
 def detect_document():
