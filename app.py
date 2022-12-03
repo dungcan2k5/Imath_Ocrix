@@ -16,8 +16,4 @@ class App():
 
         # Màu nền
         window['bg'] = COLOR_BACKGROUND
-
-        # Tên dự án
-        Label(text="Máy Quét Quang Học", bg=COLOR_BACKGROUND, font=("Cascadia Mono Bold", 20)).pack(pady=10)
-
         
