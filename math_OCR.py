@@ -4,7 +4,6 @@ from PIL import Image, ImageTk
 from app import App
 from define import *
 
-
 class ScrMath():
     def __init__(self, window) -> None:
 

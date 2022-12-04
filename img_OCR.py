@@ -11,21 +11,22 @@ splash_root = Tk()
 splash_root.geometry("300x200")
 splash_label = Label(text="Splash Screen!", font=("Helvetica", 18)).pack(pady=20)
 
+# Show ScrImg window
 def run():
     main_window = Toplevel
     ScrImg(main_window)
-
 
 # Main Window
 class ScrImg():
     def __init__(self, window) -> None:
         splash_root.destroy()
-
+        
         # Show Math_OCR Screen
         def openMathScr():
             math_scr = Toplevel
             ScrMath(math_scr)
-            window.destroy()
+            window.withdraw()
+
 
         window = Tk()
         App(window)
