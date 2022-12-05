@@ -1,8 +1,7 @@
-import os, keyboard
-import time, datetime
+import os, keyboard, time, datetime
 from PIL import ImageGrab
 
-# Path Files
+# Đường dẫn và tên file ảnh
 file_name = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
 img_path = os.path.join("Img_temp", file_name + ".png")
 
@@ -17,7 +16,8 @@ def snip_screen():
     else:
         os.mkdir("Img_temp")
 
-    keyboard.press_and_release("windows + down arrow, windows + shift + s")
+    # Chụp màn hình
+    keyboard.press_and_release("windows + shift + s")
 
     # Sao chép hình ảnh vào bộ nhớ tạm
     image = image1 = ImageGrab.grabclipboard()
@@ -26,4 +26,5 @@ def snip_screen():
         time.sleep(1.5)
         image = ImageGrab.grabclipboard()
 
+    # Lưu ảnh theo đường dẫn
     image.save(os.path.join("Img_temp", file_name + ".png"))

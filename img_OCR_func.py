@@ -5,7 +5,7 @@ from snip_screen import *
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"C:\Users\Dungx\Desktop\OCR_PRJ\Key.json"
 
-# Detects document in an image.
+# Phát hiện văn bản trong tài liệu.
 def detect_document():
     snip_screen()
 
@@ -22,7 +22,7 @@ def detect_document():
     
     return full_page
             
-# Detects text in an image <same the top>.
+# Phát hiện văn bản trong hình ảnh.
 def detect_text():
     snip_screen()
 
