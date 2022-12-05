@@ -17,7 +17,7 @@ def snip_screen():
     else:
         os.mkdir("Img_temp")
 
-    keyboard.press_and_release('windows + shift + s')
+    keyboard.press_and_release("windows + down arrow, windows + shift + s")
 
     # Sao chép hình ảnh vào bộ nhớ tạm
     image = image1 = ImageGrab.grabclipboard()

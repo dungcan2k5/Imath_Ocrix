@@ -1,48 +1,51 @@
 from tkinter import *
 from PIL import Image, ImageTk
+import keyboard
 
-from app import App
+
 from define import *
 from img_OCR_func import *
-from math_OCR import ScrMath
+from snip_screen import file_name
 
-# Splash Window
-splash_root = Tk()
-splash_root.geometry("300x200")
-splash_label = Label(text="Splash Screen!", font=("Helvetica", 18)).pack(pady=20)
 
-# Show ScrImg window
-def run():
-    main_window = Toplevel
-    ScrImg(main_window)
+class ScrImg(Frame):
+    def __init__(self, parent):
+        super().__init__(parent)
 
-# Main Window
-class ScrImg():
-    def __init__(self, window) -> None:
-        splash_root.destroy()
+        def showText():
+            text = detect_text()
+            showTextLabel.config(state="normal")
+            showTextLabel.delete('1.0', END)
+            showTextLabel.insert("end",text)
+            showTextLabel.config(state="disabled")
+
+            # Image is Captured
+            im = Image.open(f"Img_temp/{file_name}.png").resize((425, 50), Image.Resampling.LANCZOS)
+            imgCapScr = ImageTk.PhotoImage(im)
+            showImgLabel = Label(self, image=imgCapScr)
+            showImgLabel.image = imgCapScr
+            showImgLabel.grid(column=0, row=0, sticky=NSEW, padx=20)
+
+        # Show Image
+        showImgLabel = Text(self, bg="light yellow", height=20)
+        showImgLabel.grid(column=0, row=0, sticky=NSEW, padx=20)
+
+        # Show Text
+        showTextLabel = Text(self, bg="white", height=20)
+        showTextLabel.grid(column=1, row=0, sticky=NSEW, padx=20)
+
+        # Icon For Button
+        icoSnipScr = ImageTk.PhotoImage(Image.open("icon/snip_screen.png").resize((30, 30), Image.Resampling.LANCZOS))
         
-        # Show Math_OCR Screen
-        def openMathScr():
-            math_scr = Toplevel
-            ScrMath(math_scr)
-            window.withdraw()
+        # Snip Screen Button
+        btnSnipScr = Button(self, image=icoSnipScr, text="Chụp ảnh màn hình", width=190, height=40, compound="left", command=showText)
+        btnSnipScr.image = icoSnipScr
+        btnSnipScr.grid(column=0, row=1)
 
 
-        window = Tk()
-        App(window)
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
 
-        # Chọn Loại Chương Trình
-        choose_ImgOCR = Button(window, text="Image OCR     |", bg=COLOR_BACKGROUND,borderwidth=0, activebackground=COLOR_BACKGROUND)
-        choose_ImgOCR.grid(column=0, row=0, sticky=NE, pady=10)
+        parent["bg"] = COLOR_BACKGROUND
 
-        choose_MathOCR = Button(window, text="   Math OCR", bg=COLOR_BACKGROUND, 
-            borderwidth=0, activebackground=COLOR_BACKGROUND, command=openMathScr)
-        choose_MathOCR.grid(column=1, row=0, sticky=NW, pady=10)
-
-        Label(window, text="Đây là trang 1").grid(row=1)
-
-        window.columnconfigure(0, weight=1)
-        window.columnconfigure(1, weight=1) 
-    
-splash_root.after(3000, run)
-mainloop()
+        self.pack(padx = 10, pady = 10)
