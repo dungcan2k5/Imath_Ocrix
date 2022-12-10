@@ -7,7 +7,7 @@ img_path = os.path.join("Img_temp", file_name + ".png")
 
 # Chụp màn hình
 def snip_screen():
-    "Capture a rectangular portion of your screen"
+    """Capture a rectangular portion of your screen"""
 
     # Kiểm tra thư mục chứa ảnh tạm thời
     if os.path.isdir("Img_temp"):
@@ -17,11 +17,13 @@ def snip_screen():
         os.mkdir("Img_temp")
 
     # Chụp màn hình
-    keyboard.press_and_release("windows + shift + s")
-
+    keyboard.press_and_release("windows + down")
+    keyboard.press_and_release("shift + windows + s")
+    
     # Sao chép hình ảnh vào bộ nhớ tạm
     image = image1 = ImageGrab.grabclipboard()
 
+    # Sao chép hình ảnh mới vào bộ nhớ tạm
     while image == image1:
         time.sleep(1.5)
         image = ImageGrab.grabclipboard()

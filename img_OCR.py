@@ -3,6 +3,7 @@ from PIL import Image, ImageTk
 from io import BytesIO
 import requests
 import pyperclip
+import random
 
 
 from define import *
@@ -87,7 +88,8 @@ class ScrImg(Frame):
         # Show text detected from Image
         def showText():
             # Detect text from image
-            text = detect_text()
+            lst_func = [detect_text, detect_document]
+            text = random.choice(lst_func)()
             showTextLabel.config(state="normal")
             showTextLabel.delete('1.0', END)
             showTextLabel.insert("end", text)

@@ -16,4 +16,7 @@ class App():
 
         # Màu nền
         window['bg'] = COLOR_BACKGROUND
+
+        #Icon
+        window.iconbitmap(ICON)
         

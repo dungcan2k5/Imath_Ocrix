@@ -46,7 +46,7 @@ class MainWindow():
         self.framelist[0].forget()
         self.framelist[1].tkraise()
         self.framelist[1].pack(padx = 10, pady = 10)
- 
+
 # Màn hình giới thiệu
 splash_root = Tk()
 splash_root.geometry("300x200")
@@ -56,7 +56,5 @@ splash_label = Label(text="Splash Screen!", font=("Helvetica", 18)).pack(pady=20
 def run():
     main_window = Toplevel
     MainWindow(main_window)
-
-# Vào chương trình chính sau 3s
-splash_root.after(3000, run)
+splash_root.after(1, run)
 mainloop()
