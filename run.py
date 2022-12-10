@@ -56,5 +56,5 @@ splash_label = Label(text="Splash Screen!", font=("Helvetica", 18)).pack(pady=20
 def run():
     main_window = Toplevel
     MainWindow(main_window)
-splash_root.after(1, run)
+splash_root.after(3000, run)
 mainloop()
