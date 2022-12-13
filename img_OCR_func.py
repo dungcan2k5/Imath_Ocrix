@@ -1,9 +1,9 @@
-import os,io
+import os, io
 from google.cloud import vision
 
 from snip_screen import *
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"C:\Users\Dungx\Desktop\OCR_PRJ\Key.json"
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = rf"{os.getcwd()}\Key.json"
 
 # Phát hiện văn bản trong tài liệu.
 def detect_document():

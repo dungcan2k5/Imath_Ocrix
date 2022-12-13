@@ -1,9 +1,7 @@
 from tkinter import *
 from PIL import Image, ImageTk
 from io import BytesIO
-import requests
-import pyperclip
-import random
+import requests, pyperclip, random
 
 
 from define import *
@@ -27,9 +25,9 @@ class ScrImg(Frame):
                 width = im.width
 
                 # Resize Image
-                if im.width > 425:
-                    height = round(410 * (im.height / im.width))
-                    width = 410
+                if width != 560:
+                    height = round(560 * (height / width))
+                    width = 560
                 
                 return im.resize((width, height), Image.Resampling.LANCZOS)
             elif option == "image":
@@ -39,9 +37,9 @@ class ScrImg(Frame):
                 width = im.width
 
                 # Resize Image
-                if im.width > 425:
-                    height = round(410 * (im.height / im.width))
-                    width = 410
+                if width != 560:
+                    height = round(560 * (height / width))
+                    width = 560
 
                 return im.resize((width, height), Image.Resampling.LANCZOS)
 
@@ -49,8 +47,11 @@ class ScrImg(Frame):
         def inputUriBox():
 
             UrlInputBox = Toplevel()
-            content = Entry(UrlInputBox)
-            content.pack()
+            UrlInputBox.geometry("400x100")
+            UrlInputBox.iconbitmap(ICON)
+            Label(UrlInputBox, text="Nhập liên kết tới hình ảnh:", pady=10).pack()            
+            content = Entry(UrlInputBox,width=100)
+            content.pack(padx=10)
             
             # Show Text of Image
             def click():
@@ -76,7 +77,7 @@ class ScrImg(Frame):
 
                 UrlInputBox.destroy()
                 
-            Button(UrlInputBox, text="OK", command=click).pack()
+            Button(UrlInputBox, text="OK", command=click).pack(pady=10)
         
         # copy selected text to clipboard
         def copyText(): 
@@ -107,37 +108,37 @@ class ScrImg(Frame):
             showImgLabel.config(state="disabled")
 
         # Show Image Label
-        showImgLabel = Text(self, bg="light yellow", height=20, font=("Times New Roman", 11))
-        showImgLabel.grid(columnspan=2, row=0, padx=10)
+        showImgLabel = Text(self, bg="light yellow", width=200, height=25, font=("Times New Roman", 14))
+        showImgLabel.grid(columnspan=2, row=0, padx=10, sticky=NSEW)
 
         # Show Text Label
         global showTextLabel
-        showTextLabel = Text(self, bg="white", height=20, font=("Times New Roman", 11))
-        showTextLabel.grid(column=2, row=0, padx=10)
+        showTextLabel = Text(self, bg="white", width=200, height=25, font=("Times New Roman", 14))
+        showTextLabel.grid(column=2, row=0, padx=10, sticky=NSEW)
 
         # Icon For URL Button
-        icoURL = ImageTk.PhotoImage(Image.open("icon/icon_url.png").resize((30, 30), Image.Resampling.LANCZOS))
+        icoURL = ImageTk.PhotoImage(Image.open("icon/icon_url.png").resize((25, 30), Image.Resampling.LANCZOS))
 
         # Get Url Image Button 
-        btnUrlImg = Button(self, image=icoURL, text="Liên kết hình ảnh", width=190, height=40, compound="left", command=inputUriBox)
+        btnUrlImg = Button(self, image=icoURL, text=" Liên kết hình ảnh", font=(8), width=200, height=35, compound="left", command=inputUriBox)
         btnUrlImg.image = icoURL
-        btnUrlImg.grid(column=0, row=1, pady=10)
+        btnUrlImg.grid(column=0, row=1, pady=15)
 
         # Icon For Snip Screen Button
         icoSnipScr = ImageTk.PhotoImage(Image.open("icon/snip_screen.png").resize((30, 30), Image.Resampling.LANCZOS))
         
         # Snip Screen Button
-        btnSnipScr = Button(self, image=icoSnipScr, text="Chụp ảnh màn hình", width=190, height=40, compound="left", command=showText)
+        btnSnipScr = Button(self, image=icoSnipScr, text="Chụp ảnh màn hình", font=(8), width=210, height=35, compound="left", command=showText)
         btnSnipScr.image = icoSnipScr
-        btnSnipScr.grid(column=1, row=1, pady=10)
+        btnSnipScr.grid(column=1, row=1, pady=15)
 
         # Icon Copy To Clipboard
         icoClipboard = ImageTk.PhotoImage(Image.open("icon/icon_clipboard.png").resize((30, 30), Image.Resampling.LANCZOS))
 
         # Copy Content To Clipboard
-        btnCopy = Button(self, image=icoClipboard, text="Sao chép vào bộ nhớ tạm", width=190, height=40, compound="left", command=copyText)
+        btnCopy = Button(self, image=icoClipboard, text="Sao chép vào bộ nhớ tạm", font=(8), width=250, height=35, compound="left", command=copyText)
         btnCopy.image = icoClipboard
-        btnCopy.grid(column=2, row=1, pady=10)
+        btnCopy.grid(column=2, row=1, pady=15)
 
         # Thiết đặt kích thước cách cột trong khung hinh
         self.columnconfigure(0, weight=1)

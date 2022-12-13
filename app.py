@@ -6,7 +6,7 @@ class App():
     def __init__(self, window) -> None:
         
         # Kích thước
-        window.geometry(f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}+{WINDOW_POSITTION_RIGHT}+{WINDOW_POSITTION_DOWN}")
+        window.geometry(f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}")
 
         # Tiêu đề
         window.title(WINDOW_TITLE)

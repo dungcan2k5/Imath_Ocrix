@@ -2,6 +2,9 @@ from tkinter import *
 from PIL import Image, ImageTk
 import pyperclip
 import latex2mathml.converter
+import matplotlib
+import matplotlib.pyplot
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 from define import *
 from math_OCR_func import predict_formula
@@ -22,9 +25,9 @@ class ScrMath(Frame):
             width = im.width
 
             # Resize Image
-            if im.height > 95:
-                width = round(95 * (im.width / im.height))
-                height = 95
+            if height != 110:
+                width = round(110 * (width / height))
+                height = 110
 
             return im.resize((width, height), Image.Resampling.LANCZOS)
 
@@ -32,7 +35,7 @@ class ScrMath(Frame):
         def copyText(): 
             showLatexLabel.tag_add("sel", "1.0","end")
             showLatexLabel.tag_config("sel",background="black",foreground="white")
-            content = showTextLabel.selection_get()
+            content = showFormulaLabel.selection_get()
             pyperclip.copy(content)
 
         # Copy Latex to Word(MathML)
@@ -42,8 +45,17 @@ class ScrMath(Frame):
             mathml_code = latex2mathml.converter.convert(latex_code)
             pyperclip.copy(mathml_code)
 
+        def graph(event=None):
+            tmptext = text.strip()
+            tmptext = "$"+tmptext+"$"
+
+            ax.clear()
+            ax.text(0, 0.3, tmptext, fontsize=30)  
+            canvas.draw()
+
         # Show Latex Formula is predicted
         def display_LaTex():
+            global text
             text = predict_formula()
             showLatexLabel.config(state="normal")
             showLatexLabel.delete('1.0', END)
@@ -61,20 +73,32 @@ class ScrMath(Frame):
             showImgLabel.image = imgCapScr
             showImgLabel.config(state="disabled")
 
-        # Show Image
-        Label(self, text="Hình ảnh", bg=COLOR_BACKGROUND).grid(columnspan=2, row=0, sticky=W)
-        showImgLabel = Text(self, bg="light yellow", height=6)
-        showImgLabel.grid(columnspan=3, row=1, sticky=NSEW, pady=(1, 15))
+            graph()
 
+        # Show Image
+        Label(self, text="Hình ảnh", font=(5), bg=COLOR_BACKGROUND).grid(columnspan=3, row=0, sticky=W,)
+        showImgLabel = Text(self, bg="light yellow", height=7)
+        showImgLabel.grid(columnspan=3, row=1, sticky=NSEW, pady=(1, 30))
         # Show Equation
-        Label(self, text="Công thức được xác định", bg=COLOR_BACKGROUND).grid(columnspan=2, row=2, sticky=W)
-        showTextLabel = Text(self, bg="white", height=6)
-        showTextLabel.grid(columnspan=3, row=3, sticky=NSEW, pady=(1, 15))
+        Label(self, text="Công thức được xác định", font=(5), bg=COLOR_BACKGROUND).grid(columnspan=3, row=2, sticky=W)
+        showFormulaLabel = Frame(self, bg="white")
+        fig = matplotlib.figure.Figure()
+        ax = fig.add_subplot(111)
+
+        canvas = FigureCanvasTkAgg(fig, showFormulaLabel)
+        canvas.get_tk_widget().pack(side="top", fill="x", expand=True)
+
+
+        ax.get_xaxis().set_visible(False)
+        ax.get_yaxis().set_visible(False)
+
+        # showFormulaLabel.bind("<Return>", graph)
+        showFormulaLabel.grid(columnspan=3, row=3, sticky=NSEW, pady=(1, 30))
 
         # Show Latex
-        Label(self, text="LaTex", bg=COLOR_BACKGROUND).grid(columnspan=2, row=4, sticky=W)
-        showLatexLabel = Text(self, bg="white", height=1, font=("Arial", 14))
-        showLatexLabel.grid(columnspan=3, row=5, sticky=NSEW, pady=(1, 15))
+        Label(self, text="LaTex", font=(5), bg=COLOR_BACKGROUND).grid(columnspan=3, row=4, sticky=W)
+        showLatexLabel = Text(self, bg="white", height=2, font=("Arial", 16))
+        showLatexLabel.grid(columnspan=3, row=5, sticky=NSEW, pady=(1, 30))
 
         # Icon For Snip Screen Button
         icoSnipScr = ImageTk.PhotoImage(Image.open("icon/snip_screen.png").resize((30, 30), Image.Resampling.LANCZOS))
@@ -101,7 +125,7 @@ class ScrMath(Frame):
         btnCopy.grid(column=2, row=6, pady=10)       
 
         # Thiết đặt kích thước cách cột trong khung hinh
-        self.columnconfigure(0, weight=2)
+        self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
         self.columnconfigure(2, weight=1)
 
