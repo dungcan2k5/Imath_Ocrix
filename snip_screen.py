@@ -1,4 +1,4 @@
-import os, keyboard, time, datetime
+import os, keyboard, time, datetime, threading
 from PIL import ImageGrab
 
 # Đường dẫn và tên file ảnh
@@ -20,13 +20,17 @@ def snip_screen():
     keyboard.press_and_release("windows + down")
     keyboard.press_and_release("shift + windows + s")
     
-    # Sao chép hình ảnh vào bộ nhớ tạm
-    image = image1 = ImageGrab.grabclipboard()
+    def checkAndSave():
+        # Sao chép hình ảnh vào bộ nhớ tạm
+        image = image1 = ImageGrab.grabclipboard()
 
-    # Sao chép hình ảnh mới vào bộ nhớ tạm
-    while image == image1:
-        time.sleep(1.5)
-        image = ImageGrab.grabclipboard()
+        # Sao chép hình ảnh mới vào bộ nhớ tạm
+        while image == image1:
+            time.sleep(1.5)
+            image = ImageGrab.grabclipboard()
 
-    # Lưu ảnh theo đường dẫn
-    image.save(os.path.join("Img_temp", file_name + ".png"))
+        # Lưu ảnh theo đường dẫn
+        image.save(os.path.join("Img_temp", file_name + ".png"))
+    
+    time.sleep(2)
+    threading.Thread(target=checkAndSave()).start()

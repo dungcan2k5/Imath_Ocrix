@@ -108,12 +108,12 @@ class ScrImg(Frame):
             showImgLabel.config(state="disabled")
 
         # Show Image Label
-        showImgLabel = Text(self, bg="light yellow", width=200, height=25, font=("Times New Roman", 14))
+        showImgLabel = Text(self, bg="light yellow", width=200, height=26, font=("Times New Roman", 13))
         showImgLabel.grid(columnspan=2, row=0, padx=10, sticky=NSEW)
 
         # Show Text Label
         global showTextLabel
-        showTextLabel = Text(self, bg="white", width=200, height=25, font=("Times New Roman", 14))
+        showTextLabel = Text(self, bg="white", width=200, height=26, font=("Times New Roman", 13))
         showTextLabel.grid(column=2, row=0, padx=10, sticky=NSEW)
 
         # Icon For URL Button

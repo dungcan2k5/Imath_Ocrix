@@ -76,11 +76,11 @@ class ScrMath(Frame):
             graph()
 
         # Show Image
-        Label(self, text="Hình ảnh", font=(5), bg=COLOR_BACKGROUND).grid(columnspan=3, row=0, sticky=W,)
+        Label(self, text="Hình ảnh", font=(8), bg=COLOR_BACKGROUND).grid(columnspan=3, row=0, sticky=W,)
         showImgLabel = Text(self, bg="light yellow", height=7)
         showImgLabel.grid(columnspan=3, row=1, sticky=NSEW, pady=(1, 30))
         # Show Equation
-        Label(self, text="Công thức được xác định", font=(5), bg=COLOR_BACKGROUND).grid(columnspan=3, row=2, sticky=W)
+        Label(self, text="Công thức được xác định", font=(8), bg=COLOR_BACKGROUND).grid(columnspan=3, row=2, sticky=W)
         showFormulaLabel = Frame(self, bg="white")
         fig = matplotlib.figure.Figure()
         ax = fig.add_subplot(111)
@@ -96,7 +96,7 @@ class ScrMath(Frame):
         showFormulaLabel.grid(columnspan=3, row=3, sticky=NSEW, pady=(1, 30))
 
         # Show Latex
-        Label(self, text="LaTex", font=(5), bg=COLOR_BACKGROUND).grid(columnspan=3, row=4, sticky=W)
+        Label(self, text="LaTex", font=(8), bg=COLOR_BACKGROUND).grid(columnspan=3, row=4, sticky=W)
         showLatexLabel = Text(self, bg="white", height=2, font=("Arial", 16))
         showLatexLabel.grid(columnspan=3, row=5, sticky=NSEW, pady=(1, 30))
 
@@ -104,7 +104,7 @@ class ScrMath(Frame):
         icoSnipScr = ImageTk.PhotoImage(Image.open("icon/snip_screen.png").resize((30, 30), Image.Resampling.LANCZOS))
         
         # Snip Screen Button
-        btnSnipScr = Button(self, image=icoSnipScr, text="Chụp ảnh màn hình", width=190, height=40, compound="left", command=display_LaTex)
+        btnSnipScr = Button(self, image=icoSnipScr, text="Chụp ảnh màn hình", font=(8), width=190, height=40, compound="left", command=display_LaTex)
         btnSnipScr.image = icoSnipScr
         btnSnipScr.grid(column=0, row=6, pady=10)
 
@@ -112,7 +112,7 @@ class ScrMath(Frame):
         icoClipboard = ImageTk.PhotoImage(Image.open("icon/icon_clipboard.png").resize((30, 30), Image.Resampling.LANCZOS))
 
         # Copy Content To Clipboard
-        btnCopy = Button(self, image=icoClipboard, text="Sao chép vào bộ nhớ tạm", width=190, height=40, compound="left", command=copyText)
+        btnCopy = Button(self, image=icoClipboard, text="Sao chép vào bộ nhớ tạm", font=(8), width=220, height=40, compound="left", command=copyText)
         btnCopy.image = icoClipboard
         btnCopy.grid(column=1, row=6, pady=10)  
 
@@ -120,7 +120,7 @@ class ScrMath(Frame):
         icoWord = ImageTk.PhotoImage(Image.open("icon/icon_word.png").resize((30, 30), Image.Resampling.LANCZOS))        
 
         # Copy Content To Word
-        btnCopy = Button(self, image=icoWord, text="Sao chép vào Word", width=190, height=40, compound="left", command=copyToWord)
+        btnCopy = Button(self, image=icoWord, text="Sao chép vào Word", width=190, font=(8), height=40, compound="left", command=copyToWord)
         btnCopy.image = icoWord
         btnCopy.grid(column=2, row=6, pady=10)       
 
