@@ -17,20 +17,16 @@ def snip_screen():
         os.mkdir("Img_temp")
 
     # Chụp màn hình
-    keyboard.press_and_release("windows + down")
+    keyboard.press_and_release("alt + tab")
     keyboard.press_and_release("shift + windows + s")
     
-    def checkAndSave():
-        # Sao chép hình ảnh vào bộ nhớ tạm
-        image = image1 = ImageGrab.grabclipboard()
+    # Sao chép hình ảnh vào bộ nhớ tạm
+    image = image1 = ImageGrab.grabclipboard()
 
-        # Sao chép hình ảnh mới vào bộ nhớ tạm
-        while image == image1:
-            time.sleep(1.5)
-            image = ImageGrab.grabclipboard()
+    # Sao chép hình ảnh mới vào bộ nhớ tạm
+    while image == image1:
+        time.sleep(1.5)
+        image = ImageGrab.grabclipboard()
 
-        # Lưu ảnh theo đường dẫn
-        image.save(os.path.join("Img_temp", file_name + ".png"))
-    
-    time.sleep(2)
-    threading.Thread(target=checkAndSave()).start()
+    # Lưu ảnh theo đường dẫn
+    image.save(os.path.join("Img_temp", file_name + ".png"))
