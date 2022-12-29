@@ -22,7 +22,7 @@ class MainWindow():
         # Cửa sổ giới thiệu:
         def infoWindow():
             info = Toplevel()
-            info.geometry("400x170")
+            info.geometry("400x210")
             info.iconbitmap(ICON)
             info.title("About Imath Ocrix")
             info.resizable(False, False)
@@ -31,6 +31,8 @@ class MainWindow():
             heading = Label(info, image=icoApp, text="Imath Ocrix - Phần mềm quét quang học", compound="left")
             heading.image = icoApp
             heading.pack(pady=10)
+
+            Label(info, text="Dự án KHKT 2022-2023 Dũng&Đạt THPT Than Uyên").pack(pady=(10, 0))
 
             Label(info, text="Mã nguồn của dự án (Github):").pack(pady=(20, 10))
             sourceLink = Label(info, text="https://github.com/dungcan2k5/Imath_Ocrix", fg="blue", cursor="hand2")
@@ -93,5 +95,5 @@ splash_label = Label(text="Splash Screen!", font=("Helvetica", 18)).pack(pady=20
 def run():
     main_window = Toplevel
     MainWindow(main_window)
-splash_root.after(1, run)
+splash_root.after(3000, run)
 mainloop()

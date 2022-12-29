@@ -45,6 +45,7 @@ class ScrMath(Frame):
             mathml_code = latex2mathml.converter.convert(latex_code)
             pyperclip.copy(mathml_code)
 
+        # Draw Formula
         def graph(event=None):
             tmptext = text.strip()
             tmptext = "$"+tmptext+"$"
@@ -79,6 +80,7 @@ class ScrMath(Frame):
         Label(self, text="Hình ảnh", font=(8), bg=COLOR_BACKGROUND).grid(columnspan=3, row=0, sticky=W,)
         showImgLabel = Text(self, bg="light yellow", height=7)
         showImgLabel.grid(columnspan=3, row=1, sticky=NSEW, pady=(1, 30))
+
         # Show Equation
         Label(self, text="Công thức được xác định", font=(8), bg=COLOR_BACKGROUND).grid(columnspan=3, row=2, sticky=W)
         showFormulaLabel = Frame(self, bg="white")
@@ -88,11 +90,9 @@ class ScrMath(Frame):
         canvas = FigureCanvasTkAgg(fig, showFormulaLabel)
         canvas.get_tk_widget().pack(side="top", fill="x", expand=True)
 
-
         ax.get_xaxis().set_visible(False)
         ax.get_yaxis().set_visible(False)
 
-        # showFormulaLabel.bind("<Return>", graph)
         showFormulaLabel.grid(columnspan=3, row=3, sticky=NSEW, pady=(1, 30))
 
         # Show Latex
@@ -101,31 +101,30 @@ class ScrMath(Frame):
         showLatexLabel.grid(columnspan=3, row=5, sticky=NSEW, pady=(1, 30))
 
         # Icon For Snip Screen Button
-        icoSnipScr = ImageTk.PhotoImage(Image.open("icon/snip_screen.png").resize((30, 30), Image.Resampling.LANCZOS))
+        btnSnipScr_img = ImageTk.PhotoImage(Image.open("button/btn_snip_screen.png"))
         
         # Snip Screen Button
-        btnSnipScr = Button(self, image=icoSnipScr, text="Chụp ảnh màn hình", font=(8), width=190, height=40, compound="left", command=display_LaTex)
-        btnSnipScr.image = icoSnipScr
+        btnSnipScr = Button(self, image=btnSnipScr_img, borderwidth=0, bg=COLOR_BACKGROUND, activebackground=COLOR_BACKGROUND, command=display_LaTex)
+        btnSnipScr.image = btnSnipScr_img
         btnSnipScr.grid(column=0, row=6, pady=10)
 
         # Icon Copy To Clipboard
-        icoClipboard = ImageTk.PhotoImage(Image.open("icon/icon_clipboard.png").resize((30, 30), Image.Resampling.LANCZOS))
+        btnCopyLaTeX_img = ImageTk.PhotoImage(Image.open("button/btn_copy_LaTeX.png"))
 
         # Copy Content To Clipboard
-        btnCopy = Button(self, image=icoClipboard, text="Sao chép vào bộ nhớ tạm", font=(8), width=220, height=40, compound="left", command=copyText)
-        btnCopy.image = icoClipboard
-        btnCopy.grid(column=1, row=6, pady=10)  
+        btnCopyLaTeX = Button(self, image=btnCopyLaTeX_img, borderwidth=0, bg=COLOR_BACKGROUND, activebackground=COLOR_BACKGROUND, command=copyText)
+        btnCopyLaTeX.image = btnCopyLaTeX_img
+        btnCopyLaTeX.grid(column=1, row=6, pady=10)  
 
         # Icon Copy To Clipboard
-        icoWord = ImageTk.PhotoImage(Image.open("icon/icon_word.png").resize((30, 30), Image.Resampling.LANCZOS))        
+        btnCopyWord_img = ImageTk.PhotoImage(Image.open("button/btn_copy_Word.png"))        
 
         # Copy Content To Word
-        btnCopy = Button(self, image=icoWord, text="Sao chép vào Word", width=190, font=(8), height=40, compound="left", command=copyToWord)
-        btnCopy.image = icoWord
-        btnCopy.grid(column=2, row=6, pady=10)       
+        btnCopyWord = Button(self, image=btnCopyWord_img, borderwidth=0, bg=COLOR_BACKGROUND, activebackground=COLOR_BACKGROUND, command=copyToWord)
+        btnCopyWord.image = btnCopyWord_img
+        btnCopyWord.grid(column=2, row=6, pady=10)       
 
         # Thiết đặt kích thước cách cột trong khung hinh
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
         self.columnconfigure(2, weight=1)
-

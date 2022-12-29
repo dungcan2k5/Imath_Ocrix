@@ -3,11 +3,9 @@ from PIL import Image, ImageTk
 from io import BytesIO
 import requests, pyperclip, random
 
-
 from define import *
 from img_OCR_func import *
 from snip_screen import file_name
-
 
 class ScrImg(Frame):
     def __init__(self, parent):
@@ -116,28 +114,28 @@ class ScrImg(Frame):
         showTextLabel = Text(self, bg="white", width=200, height=26, font=("Times New Roman", 13))
         showTextLabel.grid(column=2, row=0, padx=10, sticky=NSEW)
 
-        # Icon For URL Button
-        icoURL = ImageTk.PhotoImage(Image.open("icon/icon_url.png").resize((25, 30), Image.Resampling.LANCZOS))
+        # Button Image For URL Button
+        btnUrlImg_img = ImageTk.PhotoImage(Image.open("button/btn_url.png"))
 
-        # Get Url Image Button 
-        btnUrlImg = Button(self, image=icoURL, text=" Liên kết hình ảnh", font=(8), width=200, height=35, compound="left", command=inputUriBox)
-        btnUrlImg.image = icoURL
+        # Get Url Of Image Button 
+        btnUrlImg = Button(self, image=btnUrlImg_img, borderwidth=0, bg=COLOR_BACKGROUND, activebackground=COLOR_BACKGROUND, command=inputUriBox)
+        btnUrlImg.image = btnUrlImg_img
         btnUrlImg.grid(column=0, row=1, pady=15)
 
-        # Icon For Snip Screen Button
-        icoSnipScr = ImageTk.PhotoImage(Image.open("icon/snip_screen.png").resize((30, 30), Image.Resampling.LANCZOS))
+        # Button Image For Snip Screen Button
+        btnSnipScr_img = ImageTk.PhotoImage(Image.open("button/btn_snip_screen.png"))
         
         # Snip Screen Button
-        btnSnipScr = Button(self, image=icoSnipScr, text="Chụp ảnh màn hình", font=(8), width=210, height=35, compound="left", command=showText)
-        btnSnipScr.image = icoSnipScr
+        btnSnipScr = Button(self, image=btnSnipScr_img, borderwidth=0, bg=COLOR_BACKGROUND, activebackground=COLOR_BACKGROUND, command=showText)
+        btnSnipScr.image = btnSnipScr_img
         btnSnipScr.grid(column=1, row=1, pady=15)
 
-        # Icon Copy To Clipboard
-        icoClipboard = ImageTk.PhotoImage(Image.open("icon/icon_clipboard.png").resize((30, 30), Image.Resampling.LANCZOS))
+        # Button Image Copy To Clipboard
+        btnCopy_img = ImageTk.PhotoImage(Image.open("button/btn_copy.png"))
 
         # Copy Content To Clipboard
-        btnCopy = Button(self, image=icoClipboard, text="Sao chép vào bộ nhớ tạm", font=(8), width=250, height=35, compound="left", command=copyText)
-        btnCopy.image = icoClipboard
+        btnCopy = Button(self, image=btnCopy_img, borderwidth=0, bg=COLOR_BACKGROUND, activebackground=COLOR_BACKGROUND, command=copyText)
+        btnCopy.image = btnCopy_img
         btnCopy.grid(column=2, row=1, pady=15)
 
         # Thiết đặt kích thước cách cột trong khung hinh

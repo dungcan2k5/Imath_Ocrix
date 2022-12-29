@@ -12,11 +12,10 @@ class App():
         window.title(WINDOW_TITLE)
 
         # Khoá kích thước
-        window.resizable(False, False)
+        # window.resizable(False, False)
 
         # Màu nền
         window['bg'] = COLOR_BACKGROUND
 
         #Icon
         window.iconbitmap(ICON)
-        
