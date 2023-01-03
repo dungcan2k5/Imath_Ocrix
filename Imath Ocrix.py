@@ -87,9 +87,11 @@ class MainWindow():
 
 # Màn hình giới thiệu
 splash_root = Tk()
-splash_root.geometry("300x200")
+splash_root.geometry("300x150")
 splash_root.overrideredirect(True)
-splash_label = Label(text="Splash Screen!", font=("Helvetica", 18)).pack(pady=20)
+splash_img = ImageTk.PhotoImage(Image.open("icon/Splash Screen.png"))
+splash_label = Label(image=splash_img).pack()
+# splash_label.image = splash_img
 
 # Hiển thị màn hình chính
 def run():

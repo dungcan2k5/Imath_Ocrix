@@ -106,19 +106,19 @@ class ScrImg(Frame):
             showImgLabel.config(state="disabled")
 
         # Show Image Label
-        showImgLabel = Text(self, bg="light yellow", width=200, height=26, font=("Times New Roman", 13))
+        showImgLabel = Text(self, bg="light yellow", width=200, height=26, font=("Times New Roman", 13), state="disabled")
         showImgLabel.grid(columnspan=2, row=0, padx=10, sticky=NSEW)
 
         # Show Text Label
         global showTextLabel
-        showTextLabel = Text(self, bg="white", width=200, height=26, font=("Times New Roman", 13))
+        showTextLabel = Text(self, bg="white", width=200, height=26, font=("Times New Roman", 13), state="disabled")
         showTextLabel.grid(column=2, row=0, padx=10, sticky=NSEW)
 
         # Button Image For URL Button
         btnUrlImg_img = ImageTk.PhotoImage(Image.open("button/btn_url.png"))
 
         # Get Url Of Image Button 
-        btnUrlImg = Button(self, image=btnUrlImg_img, borderwidth=0, bg=COLOR_BACKGROUND, activebackground=COLOR_BACKGROUND, command=inputUriBox)
+        btnUrlImg = Button(self, image=btnUrlImg_img, borderwidth=0, bg=COLOR_BACKGROUND, activebackground=COLOR_BACKGROUND, cursor="hand2", command=inputUriBox)
         btnUrlImg.image = btnUrlImg_img
         btnUrlImg.grid(column=0, row=1, pady=15)
 
@@ -126,7 +126,7 @@ class ScrImg(Frame):
         btnSnipScr_img = ImageTk.PhotoImage(Image.open("button/btn_snip_screen.png"))
         
         # Snip Screen Button
-        btnSnipScr = Button(self, image=btnSnipScr_img, borderwidth=0, bg=COLOR_BACKGROUND, activebackground=COLOR_BACKGROUND, command=showText)
+        btnSnipScr = Button(self, image=btnSnipScr_img, borderwidth=0, bg=COLOR_BACKGROUND, activebackground=COLOR_BACKGROUND, cursor="hand2", command=showText)
         btnSnipScr.image = btnSnipScr_img
         btnSnipScr.grid(column=1, row=1, pady=15)
 
@@ -134,11 +134,11 @@ class ScrImg(Frame):
         btnCopy_img = ImageTk.PhotoImage(Image.open("button/btn_copy.png"))
 
         # Copy Content To Clipboard
-        btnCopy = Button(self, image=btnCopy_img, borderwidth=0, bg=COLOR_BACKGROUND, activebackground=COLOR_BACKGROUND, command=copyText)
+        btnCopy = Button(self, image=btnCopy_img, borderwidth=0, bg=COLOR_BACKGROUND, activebackground=COLOR_BACKGROUND, cursor="hand2", command=copyText)
         btnCopy.image = btnCopy_img
         btnCopy.grid(column=2, row=1, pady=15)
 
-        # Thiết đặt kích thước cách cột trong khung hinh
+        # Thiết đặt độ rộng các cột trong khung hinh
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
         self.columnconfigure(2, weight=2)
