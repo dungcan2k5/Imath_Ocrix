@@ -97,5 +97,5 @@ splash_label = Label(image=splash_img).pack()
 def run():
     main_window = Toplevel
     MainWindow(main_window)
-splash_root.after(3000, run)
+splash_root.after(1, run)
 mainloop()

@@ -1,4 +1,4 @@
-import os, keyboard, time, datetime
+import os, keyboard, time, datetime, shutil
 from PIL import ImageGrab
 
 # Đường dẫn và tên file ảnh
@@ -10,11 +10,9 @@ def snip_screen():
     """Capture a rectangular portion of your screen"""
 
     # Kiểm tra thư mục chứa ảnh tạm thời
-    if os.path.isdir("Img_temp"):
-        for f in next(os.walk("Img_temp"))[2]:
-            os.remove(os.path.join("Img_temp", f))
-    else:
-        os.mkdir("Img_temp")
+    if os.path.exists("Img_temp"):
+        shutil.rmtree("Img_temp")
+    os.mkdir("Img_temp")
 
     # Chụp màn hình
     keyboard.press_and_release("alt + tab")
@@ -31,4 +29,4 @@ def snip_screen():
     keyboard.press_and_release("alt + tab")
 
     # Lưu ảnh theo đường dẫn
-    image.save(os.path.join("Img_temp", file_name + ".png"))
+    image.save(img_path)
